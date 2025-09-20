@@ -112,7 +112,7 @@ export const mockData = {
       title: "Biological Network Analysis",
       description: "Advanced data processing framework for analyzing protein interaction networks using Markov Clustering and Molecular Complex Detection algorithms with visualization tools.",
       technologies: ["Python", "NetworkX", "Pandas", "Matplotlib", "Scikit-learn"],
-      github: null,
+      github: "https://github.com/santykamal2001/Biological_Network_Analysis.git",
       demo: null,
       icon: "🧬",
       highlights: [
