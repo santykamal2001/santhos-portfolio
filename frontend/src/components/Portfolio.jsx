@@ -79,6 +79,7 @@ const Portfolio = () => {
       subject: '',
       message: ''
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleInputChange = (e) => {
       setFormData({
@@ -87,14 +88,36 @@ const Portfolio = () => {
       });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      // Mock form submission
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setIsSubmitting(true);
+      
+      try {
+        const response = await axios.post(`${API}/contact`, formData);
+        
+        if (response.data.success) {
+          toast({
+            title: "Message Sent!",
+            description: response.data.message,
+          });
+          setFormData({ name: '', email: '', subject: '', message: '' });
+        } else {
+          throw new Error(response.data.message || 'Failed to send message');
+        }
+      } catch (error) {
+        console.error('Contact form error:', error);
+        const errorMessage = error.response?.data?.detail || 
+                           error.response?.data?.message || 
+                           'Failed to send message. Please try again.';
+        
+        toast({
+          title: "Error",
+          description: errorMessage,
+          variant: "destructive"
+        });
+      } finally {
+        setIsSubmitting(false);
+      }
     };
 
     return (
