@@ -1,6 +1,6 @@
 export const mockData = {
   about: {
-    description: "I'm a passionate Software Engineer and UX Designer with expertise in building scalable full-stack applications. With a strong foundation in both frontend and backend technologies, I specialize in creating intuitive user experiences backed by robust, efficient systems. My work spans from AI-powered applications to complex data processing pipelines, always with a focus on clean code and user-centered design."
+    description: "I’m a Software Engineer and AI/ML enthusiast with experience building intelligent, scalable, and user-centered solutions. My journey spans from designing accessible banking interfaces during my UI/UX internship to developing AI-driven projects such as soil type classification using deep learning, forest fire prediction with machine learning models, and a multilingual voice chatbot powered by RAG and GenAI."
   },
   
   timeline: [

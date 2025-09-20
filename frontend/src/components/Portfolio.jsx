@@ -177,7 +177,7 @@ const Portfolio = () => {
                   </div>
                   <div>
                     <div className="font-medium text-gray-900 dark:text-white">Location</div>
-                    <div className="text-gray-600 dark:text-gray-300">Oregon, USA</div>
+                    <div className="text-gray-600 dark:text-gray-300">New Jersey, USA</div>
                   </div>
                 </motion.div>
               </div>
@@ -185,7 +185,7 @@ const Portfolio = () => {
               <div className="flex space-x-4 pt-4">
                 {[
                   { icon: Github, href: "https://github.com/santykamal2001", label: "GitHub" },
-                  { icon: Linkedin, href: "https://linkedin.com/in/santhos-kamal", label: "LinkedIn" }
+                  { icon: Linkedin, href: "https://www.linkedin.com/in/santhos-kamal-arumugam-balamurugan-6915b41ba/", label: "LinkedIn" }
                 ].map((social, index) => (
                   <motion.a
                     key={index}
@@ -366,7 +366,7 @@ const Portfolio = () => {
               className="mb-8"
             >
               <Avatar className="w-40 h-40 mx-auto border-4 border-white dark:border-gray-800 shadow-2xl">
-                <AvatarImage src="https://customer-assets.emergentagent.com/job_modern-devfolio-5/artifacts/xzcnvyna_IMG_0917.jpeg" alt="Santhos Kamal" />
+                <AvatarImage src="/images/IMG_3125.jpeg" alt="Santhos Kamal" />
                 <AvatarFallback>SK</AvatarFallback>
               </Avatar>
             </motion.div>
@@ -395,7 +395,7 @@ const Portfolio = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="text-lg text-gray-500 dark:text-gray-400 mb-12 max-w-2xl mx-auto"
             >
-              Software Engineer & UX Designer crafting scalable, intuitive, and aesthetic solutions
+              AI/ML Engineer & Software Developer | Turning Data into Intelligent, Human-Centered Solutions
             </motion.p>
 
             <motion.div
@@ -429,7 +429,7 @@ const Portfolio = () => {
             >
               {[
                 { icon: Github, href: "https://github.com/santykamal2001" },
-                { icon: Linkedin, href: "https://linkedin.com/in/santhos-kamal" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/santhos-kamal-arumugam-balamurugan-6915b41ba/" },
                 { icon: Mail, href: "mailto:santykamal2001@gmail.com" }
               ].map((social, index) => (
                 <motion.a
@@ -474,13 +474,13 @@ const Portfolio = () => {
                 {mockData.about.description}
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                Currently pursuing my M.Eng in Computer Science at Oregon State University, I bring a unique blend of technical expertise and design thinking to every project.
+                With a strong foundation in full-stack development, data science, and user experience design, I specialize in turning complex data and systems into intuitive, human-centered applications. Having recently completed my M.Eng in Computer Science at Oregon State University, I bring a blend of software engineering expertise, machine learning skills, and design thinking to craft solutions that are both technically robust and user-friendly.
               </p>
               
               <div className="flex flex-wrap gap-2 mb-8">
                 <div className="flex items-center text-gray-600 dark:text-gray-300">
                   <MapPin className="h-4 w-4 mr-2" />
-                  Oregon, USA
+                  New Jersey, USA
                 </div>
                 <div className="flex items-center text-gray-600 dark:text-gray-300 ml-6">
                   <Phone className="h-4 w-4 mr-2" />
@@ -600,7 +600,7 @@ const Portfolio = () => {
             <div className="flex justify-center space-x-6">
               {[
                 { icon: Github, href: "https://github.com/santykamal2001" },
-                { icon: Linkedin, href: "https://linkedin.com/in/santhos-kamal" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/santhos-kamal-arumugam-balamurugan-6915b41ba/" },
                 { icon: Mail, href: "mailto:santykamal2001@gmail.com" }
               ].map((social, index) => (
                 <motion.a
