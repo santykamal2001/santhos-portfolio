@@ -14,6 +14,12 @@ class EmailService:
         self.email_user = os.environ.get('EMAIL_USER', 'santykamal2001@gmail.com')
         self.email_pass = os.environ.get('EMAIL_PASS', '')
         self.email_to = os.environ.get('EMAIL_TO', 'santykamal2001@gmail.com')
+        
+        # Debug logging
+        logger.info(f"Email configuration loaded:")
+        logger.info(f"EMAIL_USER: {self.email_user}")
+        logger.info(f"EMAIL_PASS configured: {'Yes' if self.email_pass else 'No'}")
+        logger.info(f"EMAIL_TO: {self.email_to}")
     
     def create_email_content(self, contact_data: Dict[str, str]) -> str:
         """Create HTML email content from contact form data"""
