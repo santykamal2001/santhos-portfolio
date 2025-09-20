@@ -285,10 +285,11 @@ const Portfolio = () => {
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 text-white"
+                      disabled={isSubmitting}
+                      className="w-full bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <Send className="mr-2 h-5 w-5" />
-                      Send Message
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
                   </form>
                 </CardContent>
