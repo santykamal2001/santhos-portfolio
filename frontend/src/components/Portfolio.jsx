@@ -365,7 +365,7 @@ const Portfolio = () => {
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              <Avatar className="w-40 h-40 mx-auto border-4 border-white dark:border-gray-800 shadow-2xl">
+              <Avatar className="w-56 h-56 mx-auto border-4 border-white dark:border-gray-800 shadow-2xl">
                 <AvatarImage src="/images/IMG_3125.jpeg" alt="Santhos Kamal" />
                 <AvatarFallback>SK</AvatarFallback>
               </Avatar>
