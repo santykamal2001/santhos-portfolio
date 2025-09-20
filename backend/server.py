@@ -78,6 +78,63 @@ async def get_status_checks():
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**status_check) for status_check in status_checks]
 
+@api_router.post("/contact", response_model=ContactResponse)
+async def send_contact_email(contact_data: ContactForm):
+    """Send contact form email"""
+    try:
+        # Convert to dict for email service
+        contact_dict = {
+            "name": contact_data.name,
+            "email": contact_data.email,
+            "subject": contact_data.subject,
+            "message": contact_data.message
+        }
+        
+        # Attempt to send email
+        email_sent = await email_service.send_contact_email(contact_dict)
+        
+        if email_sent:
+            # Store contact form submission in database
+            contact_record = {
+                "id": str(uuid.uuid4()),
+                "name": contact_data.name,
+                "email": contact_data.email,
+                "subject": contact_data.subject,
+                "message": contact_data.message,
+                "timestamp": datetime.utcnow(),
+                "email_sent": True
+            }
+            await db.contact_submissions.insert_one(contact_record)
+            
+            return ContactResponse(
+                success=True,
+                message="Thank you for your message! I'll get back to you soon."
+            )
+        else:
+            logger.warning("Email service failed, but storing contact submission")
+            # Still store the submission even if email fails
+            contact_record = {
+                "id": str(uuid.uuid4()),
+                "name": contact_data.name,
+                "email": contact_data.email,
+                "subject": contact_data.subject,
+                "message": contact_data.message,
+                "timestamp": datetime.utcnow(),
+                "email_sent": False
+            }
+            await db.contact_submissions.insert_one(contact_record)
+            
+            return ContactResponse(
+                success=True,
+                message="Message received! I'll get back to you soon."
+            )
+            
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error(f"Contact form error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to process contact form")
+
 # Include the router in the main app
 app.include_router(api_router)
 
