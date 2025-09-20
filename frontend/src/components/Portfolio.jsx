@@ -14,14 +14,21 @@ import {
   Cloud,
   Brain,
   Award,
-  MapPin
+  MapPin,
+  Send
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Label } from "./ui/label";
+import { useToast } from "../hooks/use-toast";
 import { mockData } from "../data/mock";
+import ProjectsSection from "./ProjectsSection";
+import CertificationsSection from "./CertificationsSection";
 
 const Portfolio = () => {
   const [darkMode, setDarkMode] = useState(false);
