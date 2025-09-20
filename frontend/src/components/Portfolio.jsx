@@ -29,6 +29,10 @@ import { useToast } from "../hooks/use-toast";
 import { mockData } from "../data/mock";
 import ProjectsSection from "./ProjectsSection";
 import CertificationsSection from "./CertificationsSection";
+import axios from "axios";
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 const Portfolio = () => {
   const [darkMode, setDarkMode] = useState(false);
