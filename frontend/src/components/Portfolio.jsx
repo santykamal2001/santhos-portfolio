@@ -29,10 +29,10 @@ import { useToast } from "../hooks/use-toast";
 import { mockData } from "../data/mock";
 import ProjectsSection from "./ProjectsSection";
 import CertificationsSection from "./CertificationsSection";
-import axios from "axios";
+// import axios from "axios"; // Commented out for frontend-only deployment
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://127.0.0.1:8000';
-const API = `${BACKEND_URL}/api`;
+// const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://127.0.0.1:8000';
+// const API = `${BACKEND_URL}/api`; // Commented out for frontend-only deployment
 
 const Portfolio = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -79,7 +79,6 @@ const Portfolio = () => {
       subject: '',
       message: ''
     });
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleInputChange = (e) => {
       setFormData({
@@ -88,36 +87,24 @@ const Portfolio = () => {
       });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
       e.preventDefault();
-      setIsSubmitting(true);
       
-      try {
-        const response = await axios.post(`${API}/contact`, formData);
-        
-        if (response.data.success) {
-          toast({
-            title: "Message Sent!",
-            description: response.data.message,
-          });
-          setFormData({ name: '', email: '', subject: '', message: '' });
-        } else {
-          throw new Error(response.data.message || 'Failed to send message');
-        }
-      } catch (error) {
-        console.error('Contact form error:', error);
-        const errorMessage = error.response?.data?.detail || 
-                           error.response?.data?.message || 
-                           'Failed to send message. Please try again.';
-        
-        toast({
-          title: "Error",
-          description: errorMessage,
-          variant: "destructive"
-        });
-      } finally {
-        setIsSubmitting(false);
-      }
+      // Create mailto link with form data
+      const subject = encodeURIComponent(formData.subject || 'Portfolio Contact');
+      const body = encodeURIComponent(
+        `Hi Santhos,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\nBest regards,\n${formData.name}`
+      );
+      
+      const mailtoLink = `mailto:santykamal2001@gmail.com?subject=${subject}&body=${body}`;
+      window.open(mailtoLink, '_blank');
+      
+      // Clear form and show success message
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      toast({
+        title: "Email Client Opened!",
+        description: "Your email client should open with the pre-filled message. Please send it from there.",
+      });
     };
 
     return (
@@ -285,11 +272,10 @@ const Portfolio = () => {
                     <Button
                       type="submit"
                       size="lg"
-                      disabled={isSubmitting}
-                      className="w-full bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 text-white"
                     >
                       <Send className="mr-2 h-5 w-5" />
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                      Send Message
                     </Button>
                   </form>
                 </CardContent>
