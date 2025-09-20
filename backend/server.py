@@ -38,6 +38,29 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+class ContactForm(BaseModel):
+    name: str = Field(..., min_length=2, max_length=50)
+    email: str = Field(..., min_length=5, max_length=100)
+    subject: str = Field(..., min_length=5, max_length=100)
+    message: str = Field(..., min_length=10, max_length=1000)
+    
+    @validator('email')
+    def validate_email(cls, v):
+        email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        if not re.match(email_pattern, v):
+            raise ValueError('Invalid email format')
+        return v
+    
+    @validator('name', 'subject', 'message')
+    def validate_text_fields(cls, v):
+        if not v.strip():
+            raise ValueError('Field cannot be empty or contain only whitespace')
+        return v.strip()
+
+class ContactResponse(BaseModel):
+    success: bool
+    message: str
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
