@@ -67,6 +67,212 @@ const Portfolio = () => {
     }
   };
 
+  const ContactSection = () => {
+    const { toast } = useToast();
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    });
+
+    const handleInputChange = (e) => {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value
+      });
+    };
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // Mock form submission
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for your message. I'll get back to you soon.",
+      });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    };
+
+    return (
+      <section id="contact" className="py-20 bg-white dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-light mb-6 text-gray-900 dark:text-white">Get In Touch</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-teal-500 mx-auto mb-8"></div>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology and design.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Contact Information */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <h3 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Let's Connect</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                  Whether you're looking for a software engineer, need a consultation, or just want to say hello, 
+                  I'd love to hear from you. Feel free to reach out through any of the channels below.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <motion.div 
+                  className="flex items-center space-x-4 p-4 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  whileHover={{ x: 10 }}
+                >
+                  <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-full">
+                    <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-900 dark:text-white">Email</div>
+                    <div className="text-gray-600 dark:text-gray-300">santykamal2001@gmail.com</div>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="flex items-center space-x-4 p-4 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  whileHover={{ x: 10 }}
+                >
+                  <div className="p-3 bg-green-100 dark:bg-green-900 rounded-full">
+                    <Phone className="h-6 w-6 text-green-600 dark:text-green-400" />
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-900 dark:text-white">Phone</div>
+                    <div className="text-gray-600 dark:text-gray-300">+1 (541) 286-2632</div>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="flex items-center space-x-4 p-4 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  whileHover={{ x: 10 }}
+                >
+                  <div className="p-3 bg-purple-100 dark:bg-purple-900 rounded-full">
+                    <MapPin className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-900 dark:text-white">Location</div>
+                    <div className="text-gray-600 dark:text-gray-300">Oregon, USA</div>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div className="flex space-x-4 pt-4">
+                {[
+                  { icon: Github, href: "https://github.com/santykamal2001", label: "GitHub" },
+                  { icon: Linkedin, href: "https://linkedin.com/in/santhos-kamal", label: "LinkedIn" }
+                ].map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <social.icon className="h-6 w-6 text-gray-600 dark:text-gray-300" />
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Card className="border-0 shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-2xl">Send a Message</CardTitle>
+                  <CardDescription>
+                    Fill out the form below and I'll get back to you as soon as possible.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          className="border-gray-300 dark:border-gray-600"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          className="border-gray-300 dark:border-gray-600"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="subject">Subject</Label>
+                      <Input
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        required
+                        className="border-gray-300 dark:border-gray-600"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="message">Message</Label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        rows={5}
+                        className="border-gray-300 dark:border-gray-600 resize-none"
+                      />
+                    </div>
+
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 text-white"
+                    >
+                      <Send className="mr-2 h-5 w-5" />
+                      Send Message
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    );
+  };
+
   return (
     <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'dark' : ''}`}>
       {/* Navigation */}
